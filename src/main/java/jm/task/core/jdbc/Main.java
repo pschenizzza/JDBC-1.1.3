@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args){
-        Util.getSQLConnection();
+        /*Util.getSQLConnection();
         System.out.println("Start Main");
         UserDao userService = new UserDaoJDBCImpl();
 
@@ -24,5 +24,15 @@ public class Main {
         System.out.println(userService.getAllUsers());
         userService.cleanUsersTable();
        userService.dropUsersTable();
+    }*/
+        UserDao userDao = new UserDaoHibernateImpl();
+        userDao.createUsersTable();
+        userDao.saveUser("Harry", "Potter", (byte) 14);
+        userDao.saveUser("Ron", "Weasley", (byte) 15);
+        userDao.saveUser("Hermione", "Granger", (byte) 16);
+        userDao.saveUser("Neville", "Longbottom", (byte) 17);
+        System.out.println(userDao.getAllUsers());
+        userDao.cleanUsersTable();
+        userDao.dropUsersTable();
     }
 }
